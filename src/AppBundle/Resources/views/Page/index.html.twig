@@ -1,0 +1,24 @@
+{# src/AppBundle/Resources/views/Page/index.html.twig #}
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block body %}
+    homepage
+    <a href="{{ path('newbook') }}">Добавить книгу</a>
+
+	{% for oneBook in allBooks %}
+		<div>
+			<p>{{ oneBook.id }}</p>
+			<p>{{ oneBook.name }}</p>
+			<p>{{ oneBook.author }}</p>
+			<p>{{ oneBook.cover }}</p>
+			<img src="{{ asset('uploads/covers/' ~ oneBook.cover) }}" width="200" height="200" />
+			<p>{{ oneBook.file }}</p>
+			<a href="{{ asset('uploads/books/' ~ oneBook.file) }}" target="_blank">Скачать книгу</a>
+			<p>{{ oneBook.date }}</p>
+			<p>{{ oneBook.allow }}</p>
+			<a href="{{ path('book_modify', {'slug': oneBook.id}) }}">Изменить</a>
+			<a href="{{ path('book_delete', {'slug': oneBook.id}) }}">Удалить</a>
+		</div>
+    {% endfor %}
+
+{% endblock %}

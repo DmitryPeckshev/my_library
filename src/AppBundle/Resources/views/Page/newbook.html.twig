@@ -1,0 +1,66 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block body %}
+	{% if modify == false %}
+    	Добавьте книгу
+    {% endif %}
+    {% if modify == true %}
+    	Изменить книгу
+    {% endif %}
+
+    {{ form_start(form) }}
+    	{{ form_errors(form) }}
+
+    	{% if modify == true %}
+    		<img src="{{ asset('uploads/covers/' ~ currentBook.cover) }}" width="100" height="100" />
+    	{% endif %}
+    	<div>
+	        {{ form_label(form.name, 'Имя') }}
+	        {{ form_errors(form.name) }}
+	        {{ form_widget(form.name) }}
+	    </div>
+
+	    <div>
+	        {{ form_label(form.author, 'Автор') }}
+	        {{ form_errors(form.author) }}
+	        {{ form_widget(form.author) }}
+	    </div>
+
+	    <div>
+	        {{ form_label(form.cover, 'Обложка') }}
+	        {{ form_errors(form.cover) }}
+	        {{ form_widget(form.cover) }}
+	    </div>
+
+	    <div>
+	        {{ form_label(form.file, 'Файл') }}
+	        {{ form_errors(form.file) }}
+	        {{ form_widget(form.file) }}
+
+	        {% if modify == true %}
+	        	<a href="{{ asset('uploads/books/' ~ currentBook.file) }}" target="_blank">Скачать книгу</a>
+	        {% endif %}
+
+	    </div>
+
+	    <div>
+	        {{ form_label(form.date, 'Дата прочтения') }}
+	        {{ form_errors(form.date) }}
+	        {{ form_widget(form.date) }}
+	    </div>
+
+	    <div>
+	        {{ form_label(form.allow, 'Разрешить скачивание') }}
+	        {{ form_widget(form.allow) }}
+	    </div>
+
+	    <div>
+	        {{ form_widget(form.submit, { 'label': 'Сохранить' }) }}
+	    </div>
+
+	{{ form_end(form) }}
+
+{% endblock %}
+
+{% block sidebar %}
+{% endblock %}
