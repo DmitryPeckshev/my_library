@@ -12,8 +12,8 @@ class LibraryController extends Controller
     /**
      * @Route("/", name="homepage")
      */
-    public function indexAction(Request $request)
-    {
+    public function indexAction(Request $request) {
+        
         $repository = $this->getDoctrine()->getRepository('AppBundle:Book');
         $allBooks = $repository->findAll();
 
@@ -28,8 +28,10 @@ class LibraryController extends Controller
     /**
      * @Route("/delete/{slug}", name="book_delete", requirements={"slug": "\d+"})
      */
-    public function delBookAction($slug, Request $request)
-    {
+    public function delBookAction($slug, Request $request) {
+
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'You cannot edit this item.');
+
         $em = $this->getDoctrine()->getManager();
         $currentBook = $em->getRepository('AppBundle:Book')->find($slug);
  

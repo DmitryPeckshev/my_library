@@ -22,6 +22,8 @@ class FormController extends Controller
     */
     public function newBookAction(Request $request)
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'You cannot edit this item.');
+
         $book = new Book();
         $form = $this->createFormBuilder($book)
             ->add('name', TextType::class)
@@ -68,6 +70,8 @@ class FormController extends Controller
     * @Route("/modify/{slug}", name="book_modify", requirements={"slug": "\d+"})
     */
     public function modifyBookAction($slug, Request $request){
+
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'You cannot edit this item.');
 
         $em = $this->getDoctrine()->getManager();
         $currentBook = $em->getRepository('AppBundle:Book')->find($slug);

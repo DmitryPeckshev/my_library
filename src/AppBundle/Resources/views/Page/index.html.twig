@@ -1,24 +1,33 @@
 {# src/AppBundle/Resources/views/Page/index.html.twig #}
-{% extends 'AppBundle::layout.html.twig' %}
+{% extends 'AppBundle::base.html.twig' %}
 
 {% block body %}
-    homepage
-    <a href="{{ path('newbook') }}">Добавить книгу</a>
-
+	{% if is_granted('ROLE_ADMIN') %}
+    	<a id="add_btn" href="{{ path('newbook') }}">Добавить книгу</a>
+    {% endif %}
 	{% for oneBook in allBooks %}
-		<div>
-			<p>{{ oneBook.id }}</p>
-			<p>{{ oneBook.name }}</p>
-			<p>{{ oneBook.author }}</p>
-			<p>{{ oneBook.cover }}</p>
-			<img src="{{ asset('uploads/covers/' ~ oneBook.cover) }}" width="200" height="200" />
-			<p>{{ oneBook.file }}</p>
-			<a href="{{ asset('uploads/books/' ~ oneBook.file) }}" target="_blank">Скачать книгу</a>
-			<p>{{ oneBook.date }}</p>
-			<p>{{ oneBook.allow }}</p>
-			<a href="{{ path('book_modify', {'slug': oneBook.id}) }}">Изменить</a>
-			<a href="{{ path('book_delete', {'slug': oneBook.id}) }}">Удалить</a>
+		<div class="one_book">
+			<div class="book_cover">
+				<img src="{{ asset('uploads/covers/' ~ oneBook.cover) }}" />
+			</div>
+			<div class="book_info" >
+				<b>{{ oneBook.name }}</b>
+				<p>Автор: <b>{{ oneBook.author }}</b></p>
+				<p>Дата прочтения: {{ oneBook.date }}</p>
+				{% if oneBook.allow == true %}
+					<a href="{{ asset('uploads/books/' ~ oneBook.file) }}" target="_blank" class="download_btn">Скачать книгу</a>
+				{% endif %}
+			</div>
+			
+			{% if is_granted('ROLE_ADMIN') %}
+				<div class="mod_btn_cont">
+					<a class="mod_btn" href="{{ path('book_modify', {'slug': oneBook.id}) }}">Изменить</a>
+					<a class="del_btn" href="{{ path('book_delete', {'slug': oneBook.id}) }}">Удалить</a>
+				</div>
+			{% endif %}
+			
 		</div>
     {% endfor %}
 
+    <div style="clear:both;"></div>
 {% endblock %}
