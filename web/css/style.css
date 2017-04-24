@@ -68,7 +68,7 @@ h1 {
 	box-shadow: 0 -2px 6px #000;
 }
 .one_book {
-	border: 1px #ccc solid;
+	border: 1px #696969 solid;
 	margin: 10px 0.66%; 
 	width: 32%;
 	height: 254px;
@@ -171,7 +171,7 @@ h1 {
 }
 .new_form label{
 	display: block;
-	width: 42%;
+	width: 30%;
 	height: 100%;
 	float:left;
 	font-size: 20px;
@@ -190,7 +190,7 @@ h1 {
 	font: 20px Verdana;
 	border: 1px #fff solid;
 	padding: 4px 7px;
-	margin-left: 42%;
+	margin-left: 30%;
 	margin-top: 9px;
 	color: #fff;
 	text-shadow: 1px 1px 3px #696969, -1px -1px 3px #696969;
@@ -198,7 +198,8 @@ h1 {
 	background: #449E33;
 	cursor: pointer;
 }
-.new_form button[type="submit"]:hover {
+.new_form button[type="submit"]:hover,
+.new_form input[type="submit"]:hover {
 	background: #60BA4F;
 	box-shadow: 0 -2px 6px #000;
 }
@@ -206,7 +207,8 @@ h1 {
 	transform: scale(1.5);
 	margin-left: 3px;
 }
-.new_form input[type="text"] {
+.new_form input[type="text"],
+.new_form input[type="password"] {
 	padding: 0 5px;
 }
 
@@ -221,5 +223,27 @@ h1 {
 	.one_book {
 		width: 99%;
 		margin: 10px 0.5%; 
+	}
+	.new_form label{
+		width: 100%;
+		text-align: center;
+		height: 50%;
+		display: block;
+	}
+	.new_form input {
+		padding: 0 5px;
+		margin: 0 auto;
+		display: block;
+	}
+	.new_form input[type="checkbox"] {
+		margin-left: 45%;
+	}
+	.form_row{
+		height: 92px;
+		margin-bottom: 10px;
+	}
+	.new_form button[type="submit"],
+	.new_form input[type="submit"] {
+		margin-left: 10%;
 	}
 }

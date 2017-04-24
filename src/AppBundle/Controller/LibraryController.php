@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use AppBundle\Entity\Book;
 
 class LibraryController extends Controller
@@ -17,12 +18,19 @@ class LibraryController extends Controller
         $repository = $this->getDoctrine()->getRepository('AppBundle:Book');
         $allBooks = $repository->findAll();
 
-        $delArray = array();
         foreach($allBooks as $oneBook){
             $oneBook->setDate($oneBook->getDate()->format('d.m.Y'));       
         }
 
-        return $this->render('AppBundle:Page:index.html.twig', array('allBooks' => $allBooks, ));
+        $response = $this->render('AppBundle:Page:index.html.twig', array('allBooks' => $allBooks, )); 
+        $response->setSharedMaxAge(86400);
+        $response->setEtag(md5($response->getContent()));
+        $response->setPublic();
+        if ($response->isNotModified($request)) {
+            return $response;
+        }
+
+        return $response;
     }
 
     /**
