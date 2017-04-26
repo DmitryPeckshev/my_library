@@ -48,7 +48,7 @@ class Book
      * @var string
      *
      * @ORM\Column(name="file", type="string", length=255)
-     * @Assert\File(mimeTypes={ "application/pdf", "application/x-pdf", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "text/plain", "application/xml", "image/vnd.djvu", "application/msword" })
+     * @Assert\File(mimeTypes={ "application/pdf", "application/x-pdf", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "text/plain", "image/vnd.djvu", "application/msword", "text/xml"})
      */
     private $file;
 

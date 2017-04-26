@@ -8,14 +8,14 @@
 	{% for oneBook in allBooks %}
 		<div class="one_book">
 			<div class="book_cover">
-				<img src="{{ asset('uploads/covers/' ~ oneBook.cover) }}" />
+				<img src="{{ covers_directory ~ '/' ~ oneBook.cover }}" />
 			</div>
 			<div class="book_info" >
 				<b>{{ oneBook.name }}</b>
 				<p>Автор: <b>{{ oneBook.author }}</b></p>
-				<p>Дата прочтения: {{ oneBook.date }}</p>
+				<p>Дата прочтения: {{ oneBook.date|date("m.d.Y") }}</p>
 				{% if oneBook.allow == true %}
-					<a href="{{ asset('uploads/books/' ~ oneBook.file) }}" target="_blank" class="download_btn">Скачать книгу</a>
+					<a href="{{ books_directory ~ '/' ~ oneBook.file }}" target="_blank" class="download_btn" download>Скачать книгу</a>
 				{% endif %}
 			</div>
 			
