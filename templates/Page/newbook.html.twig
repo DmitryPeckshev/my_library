@@ -1,0 +1,74 @@
+{# Page/newbook.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block back_btn %}<a href="{{ path('homepage') }}">Назад</a>{% endblock %}
+
+{% block body %}
+
+	<section class="new_form">
+
+	{% if modify == false %}
+    	<div class="form_header">Добавьте книгу</div>
+    {% endif %}
+    {% if modify == true %}
+    	<div class="form_header">Изменить книгу</div>
+    {% endif %}
+
+    
+    {{ form_start(form) }}
+    	{{ form_errors(form) }}
+
+    	<div class="form_row">
+	        {{ form_label(form.name, 'Название: ') }}
+	        {{ form_errors(form.name) }}
+	        {{ form_widget(form.name) }}
+	    </div>
+
+	    <div class="form_row">
+	        {{ form_label(form.author, 'Автор: ') }}
+	        {{ form_errors(form.author) }}
+	        {{ form_widget(form.author) }}
+	    </div>
+
+	    <div class="form_row">
+	        {{ form_label(form.cover, 'Обложка: ') }}
+	        {{ form_errors(form.cover) }}
+	        {% if modify == true %}
+	        	{{ form_widget(form.cover, { 'attr': {'accept': 'image/*'} }) }}
+	        {% else %}
+	        	{{ form_widget(form.cover, { 'attr': {'accept': 'image/*', 'required':'true'} }) }}
+	        {% endif %}
+	    </div>
+
+	    <div class="form_row">
+	        {{ form_label(form.file, 'Файл: ') }}
+	        {{ form_errors(form.file) }}
+	        {% if modify == true %}
+	        	{{ form_widget(form.file, { 'attr': {'accept': 'application/pdf, application/x-pdf, application/vnd.openxmlformats-officedocument.wordprocessingml.document, text/plain, image/vnd.djvu, application/msword, text/xml'} }) }}
+	        {% else %}
+	        	{{ form_widget(form.file, { 'attr': {'accept': 'application/pdf, application/x-pdf, application/vnd.openxmlformats-officedocument.wordprocessingml.document, text/plain, image/vnd.djvu, application/msword, text/xml', 'required':'true' } }) }}
+	        {% endif %}
+	    </div>
+
+	    <div class="form_row">
+	        {{ form_label(form.date, 'Дата прочтения: ') }}
+	        {{ form_errors(form.date) }}
+	        {{ form_widget(form.date) }}
+	    </div>
+
+	    <div class="form_row">
+	        {{ form_label(form.allow, 'Разрешить скачивание: ') }}
+	        {{ form_widget(form.allow) }}
+	    </div>
+
+	    <div class="form_row">
+	        {{ form_widget(form.submit, { 'label': 'Сохранить' }) }}
+	    </div>
+
+	{{ form_end(form) }}
+	</section>
+
+{% endblock %}
+
+{% block sidebar %}
+{% endblock %}
