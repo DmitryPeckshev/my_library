@@ -81,8 +81,8 @@ class LibraryController extends AbstractController
 
             $file = $book->getFile();
             $cover = $book->getCover();
-            $fileName = $book->getAuthor().' - '.$book->getName().'.'.$file->guessExtension();
-            $coverName = $book->getAuthor().' - '.$book->getName().'.'.$cover->guessExtension();
+            $fileName = $book->getAuthor().'-'.$book->getName().'.'.$file->guessExtension();
+            $coverName = $book->getAuthor().'-'.$book->getName().'.'.$cover->guessExtension();
             $year = $book->getDate()->format('Y');
             $file->move(
                 $this->getParameter('books_directory').'/'.$year,
@@ -136,7 +136,7 @@ class LibraryController extends AbstractController
             if($book->getCover() != null){
                 $cover = $book->getCover();
                 $year = $book->getDate()->format('Y');
-                $coverName = $book->getAuthor().' - '.$book->getName().'.'.$cover->guessExtension();
+                $coverName = $book->getAuthor().'-'.$book->getName().'.'.$cover->guessExtension();
                 unlink($this->getParameter('covers_directory').'/'.$currentBook->getCover());
                 $cover->move(
                     $this->getParameter('covers_directory').'/'.$year,
@@ -148,7 +148,7 @@ class LibraryController extends AbstractController
             if($book->getFile() != null){
                 $file = $book->getFile();
                 $year = $book->getDate()->format('Y');
-                $fileName = $book->getAuthor().' - '.$book->getName().'.'.$file->guessExtension();
+                $fileName = $book->getAuthor().'-'.$book->getName().'.'.$file->guessExtension();
                 unlink($this->getParameter('books_directory').'/'.$currentBook->getFile());
                 $file->move(
                     $this->getParameter('books_directory').'/'.$year,

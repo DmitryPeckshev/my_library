@@ -5,8 +5,9 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: 'en'
-    books_directory: '%kernel.root_dir%/../public/uploads/books'
-    covers_directory: '%kernel.root_dir%/../public/uploads/covers'
+    books_directory: 'uploads/books'
+    covers_directory: 'uploads/covers'
+    apiKey: '12345'
 
 services:
     # default configuration for services in *this* file

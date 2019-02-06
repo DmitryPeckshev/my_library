@@ -9,7 +9,7 @@
 	{% for oneBook in allBooks %}
 		<div class="one_book">
 			<div class="book_cover">
-				<img src="{{ covers_directory ~ '/' ~ oneBook.cover }}" />
+				{{ showImg(covers_directory ~ '/' ~ oneBook.cover , 150 , 230) }} 
 			</div>
 			<div class="book_info" >
 				<b>{{ oneBook.name }}</b>
