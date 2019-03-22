@@ -45,13 +45,6 @@ class LibraryController extends AbstractController
 
         $em = $this->getDoctrine()->getManager();
         $currentBook = $em->getRepository('App:Book')->find($slug);
- 
-        if (file_exists($this->getParameter('covers_directory').'/'.$currentBook->getCover())) {
-            unlink($this->getParameter('covers_directory').'/'.$currentBook->getCover());
-        }
-        if (file_exists($this->getParameter('books_directory').'/'.$currentBook->getFile())) {
-            unlink($this->getParameter('books_directory').'/'.$currentBook->getFile());
-        } 
 
         $em->remove($currentBook);
         $em->flush();
